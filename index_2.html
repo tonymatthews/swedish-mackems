@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swedish Mackems — Sunderland AFC Supporters, Sweden</title>
+  <meta name="description" content="The official Sunderland AFC supporters branch in Sweden. Match screenings, away day coordination and a community of Mackems across Sweden.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --red: #EB172B;
+      --red-dark: #C8102E;
+      --white: #FFFFFF;
+      --dark: #1C1C2A;
+      --muted: #6B7280;
+      --light-muted: #9CA3AF;
+      --bg: #F7F7F8;
+      --border: #D1D5DB;
+      --gold: #C9A84C;
+      --success: #16A34A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(28, 28, 42, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      color: var(--white); font-weight: 800; font-size: 15px;
+      letter-spacing: -0.01em; text-decoration: none;
+    }
+    .nav-brand span { color: var(--red); }
+    .nav-link {
+      color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 500;
+      text-decoration: none; padding: 6px 14px;
+      border: 1.5px solid rgba(255,255,255,0.2); border-radius: 20px;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: #fff; border-color: var(--red); background: var(--red); }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: var(--red);
+      padding: 100px 24px 60px;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        110deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.04) 60px,
+        rgba(255,255,255,0.04) 62px
+      );
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+    .hero-flag {
+      display: inline-block;
+      background: var(--white); color: var(--red);
+      font-weight: 800; font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 3px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      color: var(--white); font-size: clamp(36px, 8vw, 56px);
+      font-weight: 900; line-height: 1.05;
+      letter-spacing: -0.03em; margin-bottom: 16px;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.82); font-size: 17px;
+      max-width: 440px; margin: 0 auto 28px; line-height: 1.55;
+    }
+    .hero-cta {
+      display: inline-block; background: var(--white); color: var(--red);
+      font-weight: 700; font-size: 15px; padding: 13px 32px;
+      border-radius: 8px; text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .hero-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+    /* ---- SECTIONS ---- */
+    .section { padding: 64px 24px; max-width: 720px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--red); margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 16px; line-height: 1.15;
+    }
+    .section p { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 12px; }
+
+    /* ---- WHAT WE DO CARDS ---- */
+    .cards { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+    @media (min-width: 540px) { .cards { grid-template-columns: 1fr 1fr 1fr; } }
+    .card {
+      background: var(--white); border: 1px solid #E5E7EB;
+      border-radius: 10px; padding: 22px 20px;
+    }
+    .card-icon { font-size: 28px; margin-bottom: 10px; }
+    .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .card p { font-size: 14px; color: var(--muted); margin: 0; line-height: 1.5; }
+
+    /* ---- FORM ---- */
+    .form-section {
+      background: var(--white);
+      border-top: 4px solid var(--red);
+      border-radius: 12px;
+      padding: 36px 28px 40px;
+      margin-top: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    @media (max-width: 480px) { .form-section { padding: 28px 20px 32px; } }
+
+    .form-group { margin-bottom: 20px; }
+    .form-label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--dark); margin-bottom: 6px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 11px 13px; font-size: 15px;
+      font-family: inherit;
+      border: 1.5px solid var(--border); border-radius: 7px;
+      outline: none; background: #fff; transition: border 0.15s;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-input.error, .form-select.error { border-color: var(--red); }
+    .form-error { color: var(--red); font-size: 12px; margin-top: 4px; display: none; }
+    .form-textarea { resize: vertical; min-height: 80px; }
+    .form-hint { font-size: 12px; color: var(--light-muted); margin-top: 4px; }
+
+    /* Radio pills */
+    .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill-input { display: none; }
+    .pill-label {
+      padding: 8px 16px; font-size: 13px; font-weight: 500;
+      border: 1.5px solid var(--border); border-radius: 20px;
+      cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .pill-input:checked + .pill-label {
+      background: var(--red); color: var(--white); border-color: var(--red);
+    }
+
+    .form-submit {
+      width: 100%; padding: 14px; background: var(--red);
+      color: var(--white); font-size: 16px; font-weight: 700;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: inherit; letter-spacing: 0.01em;
+      transition: background 0.15s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--red-dark); }
+    .form-submit:disabled { background: var(--muted); cursor: not-allowed; }
+
+    .form-footer {
+      text-align: center; font-size: 12px; color: var(--light-muted);
+      margin-top: 16px; line-height: 1.5;
+    }
+
+    /* Success */
+    .success-message {
+      display: none; text-align: center; padding: 40px 20px;
+    }
+    .success-message.show { display: block; }
+    .success-icon { font-size: 48px; margin-bottom: 12px; }
+    .success-message h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .success-message p { color: var(--muted); font-size: 15px; }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--dark); padding: 40px 24px;
+      text-align: center; color: rgba(255,255,255,0.5);
+      font-size: 13px; line-height: 1.6;
+    }
+    .footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .footer a:hover { color: var(--white); }
+    .footer-brand { color: var(--white); font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .footer-brand span { color: var(--red); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <a href="#" class="nav-brand">Swedish <span>Mackems</span></a>
+    <a href="#join" class="nav-link">Join us</a>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-flag">🇸🇪 Sverige</div>
+      <h1>Swedish Mackems</h1>
+      <p>The Sunderland AFC supporters branch in Sweden. Match screenings, community, and red-and-white across Sweden.</p>
+      <a href="#join" class="hero-cta">Join the branch →</a>
+    </div>
+  </header>
+
+  <!-- About -->
+  <section class="section">
+    <div class="section-label">About</div>
+    <h2>Mackems in Sweden</h2>
+    <p>
+      We're a group of Sunderland supporters based across Sweden — expats, half-Swedes,
+      and anyone who found their way to the lads. Whether you've been going to the
+      Stadium of Light since Roker Park days or caught the bug from Sunderland 'Til I Die,
+      you're welcome here.
+    </p>
+    <p>
+      We're registering as an official SAFC supporters branch through the Branch Liaison
+      Council, which means we'll have a direct line to the club and a voice in supporter matters.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">📺</div>
+        <h3>Match screenings</h3>
+        <p>We meet at Ölkemi in Stockholm to watch the lads together.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">✈️</div>
+        <h3>Away days</h3>
+        <p>Coordinate travel to matches — flights, tickets, and making a weekend of it.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Community</h3>
+        <p>A WhatsApp group, social events, and people who understand why you care this much.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign-up form -->
+  <section class="section" id="join">
+    <div class="section-label">Sign up</div>
+    <h2>Join the branch</h2>
+    <p>Fill in the form below and we'll add you to the group. Takes 30 seconds.</p>
+
+    <div class="form-section">
+      <div id="formFields">
+        <div class="form-group">
+          <label class="form-label" for="name">Full name *</label>
+          <input class="form-input" type="text" id="name" placeholder="e.g. Kevin Phillips" required>
+          <div class="form-error" id="nameError">Please enter your name</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email *</label>
+          <input class="form-input" type="email" id="email" placeholder="your@email.com" required>
+          <div class="form-error" id="emailError">Valid email required</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="city">Where in Sweden? *</label>
+          <select class="form-select" id="city" required>
+            <option value="">Select a city...</option>
+            <option>Stockholm</option>
+            <option>Gothenburg</option>
+            <option>Malmö</option>
+            <option>Uppsala</option>
+            <option>Linköping</option>
+            <option>Örebro</option>
+            <option>Helsingborg</option>
+            <option>Norrköping</option>
+            <option>Lund</option>
+            <option>Umeå</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="form-error" id="cityError">Pick a city</div>
+        </div>
+
+        <div class="form-group" id="otherCityGroup" style="display:none;">
+          <label class="form-label" for="otherCity">Your city / area *</label>
+          <input class="form-input" type="text" id="otherCity" placeholder="e.g. Västerås">
+          <div class="form-error" id="otherCityError">Tell us where you are</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone number *</label>
+          <input class="form-input" type="tel" id="phone" placeholder="e.g. +46 70 123 4567" required>
+          <div class="form-error" id="phoneError">Phone number required for WhatsApp</div>
+          <div class="form-hint">Used for the WhatsApp group</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Best way to reach you?</label>
+          <div class="pill-group">
+            <input class="pill-input" type="radio" name="contact" id="cWhatsapp" value="WhatsApp" checked>
+            <label class="pill-label" for="cWhatsapp">WhatsApp</label>
+            <input class="pill-input" type="radio" name="contact" id="cEmail" value="Email">
+            <label class="pill-label" for="cEmail">Email</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Anything else?</label>
+          <textarea class="form-textarea" id="message" placeholder="How you became a fan, ideas for the branch, etc."></textarea>
+        </div>
+
+        <button class="form-submit" id="submitBtn" onclick="submitForm()">Join the branch</button>
+        <div class="form-footer">Your details are only used for branch communication.</div>
+      </div>
+
+      <div class="success-message" id="successMsg">
+        <div class="success-icon">🔴⚪</div>
+        <h3>Ha'way! You're in.</h3>
+        <p>We'll be in touch with details on match screenings, meetups, and how to get involved.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-brand">Swedish <span>Mackems</span></div>
+    <p>Sunderland AFC Supporters — Sweden Branch</p>
+    <p style="margin-top:8px;">
+      <a href="mailto:swedishmackems@gmail.com">swedishmackems@gmail.com</a>
+    </p>
+    <p style="margin-top:16px; font-size:11px;">
+      Affiliated with the <a href="https://safcblc.com/" target="_blank" rel="noopener">SAFC Branch Liaison Council</a>
+    </p>
+  </footer>
+
+  <script>
+    // =============================================
+    // CONFIGURATION — paste your Google Apps Script URL here
+    // =============================================
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwYH2TU4MLTq-HWbuoErjUyb1o7DVyOYgxg9_GUTR41Hjb5-iLFP1vKz74kK1zw2GOocA/exec';
+    // =============================================
+
+    // Show/hide "other city" field
+    document.getElementById('city').addEventListener('change', function() {
+      document.getElementById('otherCityGroup').style.display =
+        this.value === 'other' ? 'block' : 'none';
+    });
+
+    function showError(id) {
+      const el = document.getElementById(id);
+      el.style.display = 'block';
+      el.previousElementSibling.classList.add('error');
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.form-error').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.form-input, .form-select').forEach(e => e.classList.remove('error'));
+    }
+
+    async function submitForm() {
+      clearErrors();
+      let valid = true;
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const citySelect = document.getElementById('city').value;
+      const otherCity = document.getElementById('otherCity').value.trim();
+      const contact = document.querySelector('input[name="contact"]:checked').value;
+      const message = document.getElementById('message').value.trim();
+
+      if (!name) { showError('nameError'); valid = false; }
+      if (!email || !/\S+@\S+\.\S+/.test(email)) { showError('emailError'); valid = false; }
+      if (!phone) { showError('phoneError'); valid = false; }
+      if (!citySelect) { showError('cityError'); valid = false; }
+      if (citySelect === 'other' && !otherCity) { showError('otherCityError'); valid = false; }
+
+      if (!valid) return;
+
+      const city = citySelect === 'other' ? otherCity : citySelect;
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Signing up...';
+
+      const data = {
+        name, email, phone, city, contact, message,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        if (GOOGLE_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL_HERE') {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+        } else {
+          // Demo mode — no script URL set yet
+          console.log('Form data (wire up Google Script URL to save):', data);
+        }
+
+        document.getElementById('formFields').style.display = 'none';
+        document.getElementById('successMsg').classList.add('show');
+      } catch (err) {
+        console.error(err);
+        alert('Something went wrong — please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Join the branch';
+      }
+    }
+  </script>
+
+</body>
+</html>
